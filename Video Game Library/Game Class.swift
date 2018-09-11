@@ -13,10 +13,8 @@ class Game {
     var checkedIn: Bool = true
     var dueDate: Date?
     
-    init(title: String, checkedIn: Bool, dueDate: Date?) {
-        self.checkedIn = checkedIn
+    init(title: String) {
         self.title = title
-        self.dueDate = dueDate
         
         
     }
