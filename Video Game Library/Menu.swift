@@ -9,17 +9,31 @@
 import Foundation
 
 class Menu {
+    
+    let gameLibrary = Library()
+    
     var shouldQuit = false //When this is true, we should quit running the video game library.
     
     func go() {
         //This function is going to make the menu run. It will display the menu and take user input until the user wishes to quit the app.
-        while !shouldQuit {
+            while !shouldQuit {
             printMenu()
+            var input = getInput()
+            //We need input validation to make sure the value falls between 1 & 8
+            handleInput(input)
             quit()
         }
     }
+
+    func validateInput(_ input: String) -> Bool {
+       let validMenuOptions = Array(1...8)
+        guard let number = Int(input) else {
+            return false
+        }
+        return validMenuOptions.contains(number)
+    }
     
-    func printMenu() {
+    func printMenu() { //Lists the options for the user to select.
         print("""
 Select an Option:
         * Add Game
@@ -29,7 +43,41 @@ Select an Option:
         * Check In Game
         * List Checked Out Games
         * Quit
+
+        Select 1-8
 """)
+        
+    }
+    
+    func handleInput(_ input: String) { //Allows the user to select a specfic option.
+        switch input {
+        case "1":
+            gameLibrary.addGame()
+            //call the library's add game function
+        case "2":
+            gameLibrary.removeGame()
+            //Call the library's remove game function.
+        case "3":
+            gameLibrary.listAvailableGames()
+            //List available games
+        case "4":
+            gameLibrary.checkOutGame()
+            //Check out game
+        case "5":
+            gameLibrary.checkInGame()
+            //Check in game
+        case "6":
+            gameLibrary.listUnavailableGames()
+            //List checked out games
+        case "7":
+            printMenu()
+            //call print menu function
+        case "8":
+            //quit
+            quit()
+        default:
+            break
+        }
         
     }
     
