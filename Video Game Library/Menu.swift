@@ -21,12 +21,11 @@ class Menu {
             var input = getInput()
             //We need input validation to make sure the value falls between 1 & 8
             handleInput(input)
-            quit()
         }
     }
 
     func validateInput(_ input: String) -> Bool {
-       let validMenuOptions = Array(1...8)
+       let validMenuOptions = Array(1...7)
         guard let number = Int(input) else {
             return false
         }
@@ -44,7 +43,7 @@ Select an Option:
         * List Checked Out Games
         * Quit
 
-        Select 1-8
+        Select 1-7
 """)
         
     }
@@ -70,9 +69,6 @@ Select an Option:
             gameLibrary.listUnavailableGames()
             //List checked out games
         case "7":
-            printMenu()
-            //call print menu function
-        case "8":
             //quit
             quit()
         default:
